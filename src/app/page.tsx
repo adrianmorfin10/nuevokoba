@@ -5,6 +5,7 @@ import ProductCard from '../components/ProductCard';
 import HotProducts from '@/components/HotProducts';
 import Footer from '@/components/footer';
 import CompraSeguraSection from '@/components/CompraSeguraSection';
+import SubFoot from '@/components/SubFoot';
 
 export default function Home() {
   const products = [
@@ -20,6 +21,13 @@ export default function Home() {
       name: "Oversized",
       price: 899,
       image: "/dos.JPG",
+      mercadolibreLink: "https://mercadolibre.com/link2"
+    },
+    {
+      id: 3,
+      name: "Crop top",
+      price: 599,
+      image: "/tres.jpg",
       mercadolibreLink: "https://mercadolibre.com/link2"
     },
   ];
@@ -50,6 +58,7 @@ export default function Home() {
         <section id="contacto">{/* ... */}</section>
 
         <CompraSeguraSection />
+        <SubFoot />
       </main>
       <Footer />
     </>

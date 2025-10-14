@@ -4,7 +4,7 @@ import { FaShieldAlt, FaRocket, FaLock } from 'react-icons/fa';
 
 const CompraSeguraSection = () => {
   return (
-    <section className="bg-[#1E1E1E] py-12 px-6 md:px-16">
+    <section className="bg-[#0F0F0F] py-12 px-6 md:px-16">
       <div className="container mx-auto">
         {/* Encabezado */}
         <div className="text-center mb-10">
