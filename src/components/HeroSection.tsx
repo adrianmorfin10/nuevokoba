@@ -16,17 +16,7 @@ const HeroSection = () => {
     }
   };
 
-  const itemAnimation = {
-    initial: { y: 50, opacity: 0 },
-    animate: { 
-      y: 0, 
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
+
 
   return (
     <section className="relative bg-black text-white h-[80vh] min-h-[500px] w-full mt-0 overflow-hidden">
