@@ -2,8 +2,12 @@
 import Image from 'next/image';
 import CTAButton from './CTAButton';
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 const HeroSection = () => {
+  const [currentBg, setCurrentBg] = useState(0);
+  const backgrounds = ['/hero.png', '/hero2.png','/hero3.png'];
+
   // Animaciones simplificadas sin variants
   const containerAnimation = {
     initial: { opacity: 0 },
@@ -16,22 +20,66 @@ const HeroSection = () => {
     }
   };
 
+  // Cambiar fondo automáticamente cada 10 segundos
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentBg((prev) => (prev + 1) % backgrounds.length);
+    }, 10000); // 10 segundos
 
+    return () => clearInterval(interval);
+  }, []);
+
+  // Función para hacer scroll a la sección de productos
+  const scrollToProducts = () => {
+    const productsSection = document.getElementById('productos');
+    if (productsSection) {
+      productsSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
 
   return (
     <section className="relative bg-black text-white h-[80vh] min-h-[500px] w-full mt-0 overflow-hidden">
-      {/* Imagen de fondo optimizada con overlay oscuro */}
+      {/* Contenedor de fondos con transición */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/hero.png"
-          alt="Fondo hero"
-          quality={85}
-          priority
-          fill
-          className="object-cover object-center opacity-90"
-        />
-        {/* Overlay oscuro para mejor contraste */}
-        <div className="absolute inset-0 bg-black/60" />
+        {/* Fondo actual */}
+        <motion.div
+          key={currentBg}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5, ease: "easeInOut" }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={backgrounds[currentBg]}
+            alt="Fondo hero"
+            quality={85}
+            priority
+            fill
+            className="object-cover object-center"
+          />
+          {/* Overlay oscuro para mejor contraste */}
+          <div className="absolute inset-0 bg-black/60" />
+        </motion.div>
+
+        {/* Fondo siguiente (pre-cargado) */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0 }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={backgrounds[(currentBg + 1) % backgrounds.length]}
+            alt="Fondo hero siguiente"
+            quality={85}
+            fill
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-black/60" />
+        </motion.div>
       </div>
 
       {/* Contenido principal */}
@@ -40,7 +88,7 @@ const HeroSection = () => {
           initial="initial"
           animate="animate"
           variants={containerAnimation}
-          className="max-w-2xl"
+          className="max-w-2xl w-full"
         >
           {/* Título principal con animación en las letras rojas */}
           <motion.h1 
@@ -97,30 +145,32 @@ const HeroSection = () => {
             Diseñamos ropa deportiva de alto rendimiento para que lleves tu entrenamiento al máximo nivel
           </motion.p>
 
-          {/* Botones con efecto escalonado */}
+          {/* Botones con efecto escalonado - 100% ancho en móvil */}
           <motion.div 
-            className="flex flex-col sm:flex-row gap-4"
+            className="flex flex-col sm:flex-row gap-4 w-full"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.4, ease: "easeOut" }}
           >
             <motion.div
+              className="w-full min-[600px]:w-auto"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <CTAButton 
                 text="Comprar ahora" 
-                onClick={() => window.open('https://mercadolibre.com/YOUR_SHOP_LINK', '_blank')}
+                onClick={() => window.open('https://wa.me/5215543813413?text=¡Hola!%20Me%20interesa%20comprar%20productos%20KOBA%20Fitness.%20¿Podrían%20brindarme%20más%20información?', '_blank')}
                 primary
               />
             </motion.div>
             <motion.div
+              className="w-full min-[600px]:w-auto"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <CTAButton 
                 text="Ver colección" 
-                onClick={() => window.open('https://mercadolibre.com/YOUR_SHOP_LINK', '_blank')}
+                onClick={scrollToProducts}
               />
             </motion.div>
           </motion.div>
@@ -141,6 +191,19 @@ const HeroSection = () => {
           />
         </div>
       </motion.div>
+
+      {/* Indicadores de slide (opcional) */}
+      <div className="absolute bottom-8 right-8 z-10 flex gap-2">
+        {backgrounds.map((_, index) => (
+          <button
+            key={index}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index === currentBg ? 'bg-white' : 'bg-white/50'
+            }`}
+            onClick={() => setCurrentBg(index)}
+          />
+        ))}
+      </div>
     </section>
   );
 };

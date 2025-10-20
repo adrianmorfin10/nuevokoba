@@ -94,7 +94,7 @@ const HotProducts = () => {
               >
                 <div className="p-3">
                   <h3 className="text-white font-bold">Top deportivo</h3>
-                  <p className="text-[#FF4646] font-bold">$1,299</p>
+                  <p className="text-[#FF4646] font-bold">$449</p>
                 </div>
                 <motion.div
                   whileHover={{ scale: 1.1 }}
@@ -102,7 +102,7 @@ const HotProducts = () => {
                 >
                   <CTAButton 
                     text="Comprar" 
-                    onClick={() => window.open('https://mercadolibre.com/YOUR_SHOP_LINK', '_blank')}
+                    onClick={() => window.open('https://wa.me/5215543813413?text=¡Hola!%20Me%20gustaría%20comprar%20un%20Top%20KOBA.%20¿Podrían%20proporcionarme%20más%20información?', '_blank')}
                     small
                     primary
                     className="rounded-none border-0 m-0 h-[42px] min-w-[90px]"
@@ -138,7 +138,7 @@ const HotProducts = () => {
             >
               <div className="w-full h-full relative">
                 <img 
-                  src="/product2.png" 
+                  src="/uno.JPG" 
                   alt="Hoddie" 
                   className="w-full h-full object-cover"
                   style={{ height: '320px' }}
@@ -161,8 +161,8 @@ const HotProducts = () => {
                 }}
               >
                 <div className="p-3">
-                  <h3 className="text-white font-bold">Hoddie</h3>
-                  <p className="text-[#FF4646] font-bold">$1,599</p>
+                  <h3 className="text-white font-bold">Conjunto</h3>
+                  <p className="text-[#FF4646] font-bold">$1,649</p>
                 </div>
                 <motion.div
                   whileHover={{ scale: 1.1 }}
@@ -170,7 +170,7 @@ const HotProducts = () => {
                 >
                   <CTAButton 
                     text="Comprar" 
-                    onClick={() => window.open('https://mercadolibre.com/YOUR_SHOP_LINK', '_blank')}
+                    onClick={() => window.open('https://wa.me/5215543813413?text=¡Hola!%20Quiero%20comprar%20un%20Conjunto%20KOBA%20Completo.%20¿Podrían%20ayudarme%20con%20el%20proceso?', '_blank')}
                     small
                     primary
                     className="rounded-none border-0 m-0 h-[42px] min-w-[90px]"
