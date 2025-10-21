@@ -19,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" className={`${play.variable} ${lato.variable}`}>
-      <body className="min-h-screen bg-koba-black text-koba-white font-lato">
+    <html lang="es" className={`${play.variable} ${lato.variable} overflow-x-hidden`}>
+      <body className="min-h-screen bg-koba-black text-koba-white font-lato overflow-x-hidden">
         {children}
       </body>
     </html>

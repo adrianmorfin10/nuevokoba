@@ -77,7 +77,7 @@ export default function Home() {
   ];
 
   return (
-    <>
+    <div className="overflow-x-hidden">
       <Header />
       <main>
         <HeroSection />
@@ -106,6 +106,6 @@ export default function Home() {
         <SubFoot />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
